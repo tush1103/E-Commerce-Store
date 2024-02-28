@@ -32,7 +32,7 @@ export const registerController = async (req, res) => {
     if (exisitingUser) {
       return res.status(200).send({
         success: false,
-        message: "Already Register please login",
+        message: "Already registered please login",
       });
     }
     //register user
@@ -49,14 +49,14 @@ export const registerController = async (req, res) => {
 
     res.status(201).send({
       success: true,
-      message: "User Register Successfully",
+      message: "User registered Successfully",
       user,
     });
   } catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "Errro in Registeration",
+      message: "Error in Registeration",
       error,
     });
   }
@@ -70,7 +70,7 @@ export const loginController = async (req, res) => {
     if (!email || !password) {
       return res.status(404).send({
         success: false,
-        message: "Invalid email or password",
+        message: "Email or password is required",
       });
     }
     //check user
@@ -78,7 +78,7 @@ export const loginController = async (req, res) => {
     if (!user) {
       return res.status(404).send({
         success: false,
-        message: "Email is not registerd",
+        message: "Email is not registered",
       });
     }
     const match = await comparePassword(password, user.password);
